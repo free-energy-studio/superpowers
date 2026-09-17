@@ -113,7 +113,7 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
    - Server automatically serves the newest file
 
 2. **Tell user what to expect and end your turn:**
-   - Remind them of the URL (every step, not just first)
+   - Share the URL when opening the companion or when the user needs it
    - Give a brief text summary of what's on screen (e.g., "Showing 3 layout options for the homepage")
    - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
 

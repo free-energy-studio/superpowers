@@ -58,15 +58,16 @@ class TestBootstrapContent:
     def test_marker_and_wrapper(self):
         content = _bootstrap()
         assert BOOTSTRAP_MARKER in content
-        assert content.startswith("<EXTREMELY_IMPORTANT>")
-        assert content.rstrip().endswith("</EXTREMELY_IMPORTANT>")
+        assert content.startswith("<superpowers-context>")
+        assert content.rstrip().endswith("</superpowers-context>")
 
     def test_contains_using_superpowers_body(self):
         content = _bootstrap()
-        # A distinctive line from the skill body proves the real SKILL.md was
-        # embedded, not a stub.
-        assert "You have superpowers" in content
-        assert "## The Rule" in content
+        m = _load()
+        skill = os.path.join(m._skills_dir(), "using-superpowers", "SKILL.md")
+        with open(skill, encoding="utf-8") as f:
+            body = m._strip_frontmatter(f.read())
+        assert body in content
 
     def test_frontmatter_stripped(self):
         content = _bootstrap()

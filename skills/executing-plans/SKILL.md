@@ -1,64 +1,26 @@
 ---
 name: executing-plans
-description: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+description: Use when carrying out an existing implementation plan in the current or a resumed task.
 ---
 
-# Executing Plans
+# Execute the Agreed Work
 
-## Overview
+Read the plan, its canonical requirements, and relevant repository instructions.
+Check important assumptions against the current code before relying on them.
 
-Load plan, review critically, execute all tasks, report when complete.
+Carry out the authorized work in dependency order. Use focused tests while
+iterating and appropriate integration checks before delivery. Update progress
+where the task is already tracked; do not create duplicate checklists or reports.
 
-**Announce at start:** "I'm using the executing-plans skill to implement this plan."
+A plan is guidance, not permission to implement a mistake. Make routine local
+adjustments when they preserve intent. Surface a changed contract, new risk, or
+scope expansion that needs the user's decision. Do not stop after an arbitrary
+number of tasks or re-request approval for unchanged work.
 
-**Note:** Tell your human partner that Superpowers works much better with access to subagents (Claude Code, Codex CLI, Codex App, Copilot CLI, and Gemini CLI all qualify; see the per-platform tool refs in `../using-superpowers/references/`). If subagents are available, use superpowers:subagent-driven-development instead of this skill.
+Work inline by default. Use `subagent-driven-development` only when delegation is
+permitted and its benefit exceeds the coordination cost. Existing workspace
+isolation does not need to be recreated.
 
-## The Process
-
-### Step 1: Load and Review Plan
-1. Ensure an isolated workspace: use superpowers:using-git-worktrees to create one or verify the existing one
-2. Read plan file
-3. Review critically - identify any questions or concerns about the plan
-4. If concerns: Raise them with your human partner before starting
-5. If no concerns: Create todos for the plan items and proceed
-
-### Step 2: Execute Tasks
-
-For each task:
-1. Mark as in_progress
-2. Follow each step exactly (plan has bite-sized steps)
-3. Run verifications as specified
-4. Mark as completed
-
-### Step 3: Complete Development
-
-After all tasks complete and verified:
-- Announce: "I'm using the finishing-a-development-branch skill to complete this work."
-- **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch
-- Follow that skill to verify tests, present options, execute choice
-
-## When to Stop and Ask for Help
-
-**STOP executing immediately when:**
-- Hit a blocker (missing dependency, test fails, instruction unclear)
-- Plan has critical gaps preventing starting
-- You don't understand an instruction
-- Verification fails repeatedly
-
-**Ask for clarification rather than guessing.**
-
-## When to Revisit Earlier Steps
-
-**Return to Review (Step 1) when:**
-- Partner updates the plan based on your feedback
-- Fundamental approach needs rethinking
-
-**Don't force through blockers** - stop and ask.
-
-## Remember
-- Review plan critically first
-- Follow plan steps exactly
-- Don't skip verifications
-- Reference skills when plan says to
-- Stop when blocked, don't guess
-- Never start implementation on main/master branch without explicit user consent
+Before delivery, review the actual diff for correctness, scope, and unnecessary
+complexity, and use `verification-before-completion` for claims. Follow the already
+agreed delivery path. Report what changed, what was verified, and any real limits.

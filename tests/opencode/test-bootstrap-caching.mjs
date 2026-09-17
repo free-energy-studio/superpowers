@@ -40,10 +40,14 @@ const secondOutput = makeOutput(`${scenario} bootstrap second step`);
 await transform({}, secondOutput);
 const afterSecond = { existsCount, readCount };
 
+// Some hosts reuse the already-transformed array on the next callback.
+await transform({}, firstOutput);
+
 const result = {
   scenario,
   firstBootstrapParts: countBootstrapParts(firstOutput),
   secondBootstrapParts: countBootstrapParts(secondOutput),
+  repeatedBootstrapParts: countBootstrapParts(firstOutput),
   staleMentionMapping: bootstrapText(firstOutput).includes('@mention'),
   staleTaskMapping: bootstrapText(firstOutput).includes('`Task` tool with subagents'),
   mapsSubagentToTask: bootstrapText(firstOutput).includes('`task` with `subagent_type: "general"`'),
@@ -83,13 +87,13 @@ function makeOutput(text) {
 
 function countBootstrapParts(output) {
   return output.messages[0].parts.filter(
-    (part) => part.type === 'text' && part.text.includes('EXTREMELY_IMPORTANT')
+    (part) => part.type === 'text' && part.text.includes('superpowers-context')
   ).length;
 }
 
 function bootstrapText(output) {
   return output.messages[0].parts.find(
-    (part) => part.type === 'text' && part.text.includes('EXTREMELY_IMPORTANT')
+    (part) => part.type === 'text' && part.text.includes('superpowers-context')
   )?.text || '';
 }
 
@@ -100,6 +104,9 @@ function assertPresentBootstrap(result) {
   }
   if (result.secondBootstrapParts !== 1) {
     failures.push(`expected second transform to inject one bootstrap part, got ${result.secondBootstrapParts}`);
+  }
+  if (result.repeatedBootstrapParts !== 1) {
+    failures.push(`expected a repeated transform not to duplicate bootstrap, got ${result.repeatedBootstrapParts}`);
   }
   if (result.firstReadCount !== 1) {
     failures.push(`expected first transform to read SKILL.md once, got ${result.firstReadCount}`);

@@ -1,7 +1,7 @@
 {
-  "name": "superpowers-dev",
+  "name": "free-energy-superpowers",
   "interface": {
-    "displayName": "Superpowers Dev"
+    "displayName": "Free Energy Superpowers"
   },
   "plugins": [
     {
