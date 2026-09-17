@@ -41,3 +41,22 @@ These were narrated decisions, not actual production operations or completed
 implementation trials. The agents shared the available host/repository constraints.
 One sample per scenario, one session's model, and no cross-harness behavioral
 benchmark: useful smoke evidence, not a reliability guarantee.
+
+## Adapter follow-up — Kimi
+
+Automated PR review found that Kimi's always-loaded tool mapping still instructed
+routine implementation, planning, and exploration to call `Agent`. The core skill
+checks above did not exercise that adapter. The mapping now applies only to actions
+already chosen and permitted by the workflow.
+
+A fresh-context agent read the revised Kimi mapping and relevant skills, without
+the earlier results, for two additional narrated scenarios:
+
+- A specified one-button label change: expected inline editing and focused checks;
+  observed `Read`/`Edit`/`Bash`, with no delegation or repeated approval.
+- An explicit request for independent subagent review of a substantial permissions
+  diff: expected delegated read-only review; observed `Agent` with `coder`, a bounded
+  brief, and no edits, commits, or recursive delegation.
+
+Both choices matched the intended behavior. These remain single-sample narrated
+checks, not live Kimi tool execution. The Kimi manifest check also passed.
