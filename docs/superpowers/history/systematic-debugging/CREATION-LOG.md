@@ -1,5 +1,8 @@
 # Creation Log: Systematic Debugging Skill
 
+Historical upstream material, not current Free Energy instructions or acceptance
+criteria. Kept outside the installed skill tree for reference only.
+
 Reference example of extracting, structuring, and bulletproofing a critical skill.
 
 ## Source Material

@@ -2,6 +2,9 @@
 
 Browser-based visual brainstorming companion for showing mockups, diagrams, and options.
 
+This is a display tool, not a separate approval workflow. Follow `SKILL.md` for
+design decisions and authorization; using the browser adds no approval gates.
+
 ## When to Use
 
 Decide per-question, not per-session. The test: **would the user understand this better by seeing it than reading it?**
@@ -14,7 +17,7 @@ Decide per-question, not per-session. The test: **would the user understand this
 - **Design polish** — when the question is about look and feel, spacing, visual hierarchy
 - **Spatial relationships** — state machines, flowcharts, entity relationships rendered as diagrams
 
-**Use the terminal** when the content is text or tabular:
+**Use the conversation** when the content is text or tabular:
 
 - **Requirements and scope questions** — "what does X mean?", "which features are in scope?"
 - **Conceptual A/B/C choices** — picking between approaches described in words
@@ -22,7 +25,7 @@ Decide per-question, not per-session. The test: **would the user understand this
 - **Technical decisions** — API design, data modeling, architectural approach selection
 - **Clarifying questions** — anything where the answer is words, not a visual preference
 
-A question *about* a UI topic is not automatically a visual question. "What kind of wizard do you want?" is conceptual — use the terminal. "Which of these wizard layouts feels right?" is visual — use the browser.
+A question *about* a UI topic is not automatically a visual question. "What kind of wizard do you want?" is conceptual — use the conversation. "Which of these wizard layouts feels right?" is visual — use the browser.
 
 ## How It Works
 
@@ -33,8 +36,8 @@ The server watches a directory for HTML files and serves the newest one to the b
 ## Starting a Session
 
 ```bash
-# Start AFTER the user approves the companion. --open auto-opens their browser on
-# the first screen; --project-dir persists mockups and enables same-port restart.
+# Start when the user requests or accepts the companion. --open opens their
+# browser on the first screen; --project-dir persists mockups across restarts.
 scripts/start-server.sh --project-dir /path/to/project --open
 
 # Returns: {"type":"server-started","port":52341,
@@ -103,39 +106,27 @@ scripts/start-server.sh \
 
 Use `--url-host` to control what hostname is printed in the returned URL JSON.
 
-## The Loop
+## Presenting and Updating Screens
 
-1. **Check server is alive**, then **write HTML** to a new file in `screen_dir`:
-   - **Required: confirm the server is alive before referring to the URL or pushing a screen.** Check that `$STATE_DIR/server-info` exists and `$STATE_DIR/server-stopped` does not. If it has shut down, restart it with `start-server.sh` using the **same `--project-dir`** — it reuses the same port, so the user's open tab reconnects on its own (it shows a "paused" overlay while the server is down) and you don't need to send a new URL. The server auto-exits after 4 hours idle (configurable with `--idle-timeout-minutes`).
-   - Use semantic filenames: `platform.html`, `visual-style.html`, `layout.html`
-   - **Never reuse filenames** — each screen gets a fresh file
-   - Use your file-creation tool — **never use cat/heredoc** (dumps noise into terminal)
-   - Server automatically serves the newest file
+Before sharing the URL or writing a screen, check that `$STATE_DIR/server-info`
+exists and `$STATE_DIR/server-stopped` does not. If stopped, restart with the same
+`--project-dir` to reuse the port. The server exits after 4 hours idle by default;
+`--idle-timeout-minutes` changes that limit.
 
-2. **Tell user what to expect and end your turn:**
-   - Share the URL when opening the companion or when the user needs it
-   - Give a brief text summary of what's on screen (e.g., "Showing 3 layout options for the homepage")
-   - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
+Write HTML with the host's file-editing tool to a new, descriptive filename in
+`screen_dir`, such as `layout.html` or `layout-v2.html`. The server displays the
+newest file. For several views that the user should see together, put them on one
+comparison screen or provide the saved artifacts together.
 
-3. **On your next turn** — after the user responds in the terminal:
-   - Read `$STATE_DIR/events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
-   - Merge with the user's terminal text to get the full picture
-   - The terminal message is the primary feedback; `state_dir/events` provides structured interaction data
+Share the complete URL and a brief explanation when needed. If a consequential
+choice remains, ask for it and use browser selections alongside the user's words.
+If the decisions are already settled, complete the requested work without waiting
+for approval of each screen. Do not add choices just to fill a comparison layout.
 
-4. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
-
-5. **Unload when returning to terminal** — when the next step doesn't need the browser (e.g., a clarifying question, a tradeoff discussion), push a waiting screen to clear the stale content:
-
-   ```html
-   <!-- filename: waiting.html (or waiting-2.html, etc.) -->
-   <div style="display:flex;align-items:center;justify-content:center;min-height:60vh">
-     <p class="subtitle">Continuing in terminal...</p>
-   </div>
-   ```
-
-   This prevents the user from staring at a resolved choice while the conversation has moved on. When the next visual question comes up, push a new content file as usual.
-
-6. Repeat until done.
+Read `$STATE_DIR/events` when interpreting browser feedback; the conversation is
+the primary instruction, and a click does not expand authorization. Update the
+screen when feedback changes it. A waiting screen is optional if stale content
+would confuse the user, not a required step when returning to the conversation.
 
 ## Writing Content Fragments
 
@@ -267,14 +258,15 @@ When the user clicks options in the browser, their interactions are recorded to 
 
 The full event stream shows the user's exploration path — they may click multiple options before settling. The last `choice` event is typically the final selection, but the pattern of clicks can reveal hesitation or preferences worth asking about.
 
-If `$STATE_DIR/events` doesn't exist, the user didn't interact with the browser — use only their terminal text.
+If `$STATE_DIR/events` doesn't exist, there are no recorded browser selections to
+interpret; use the conversation.
 
 ## Design Tips
 
 - **Scale fidelity to the question** — wireframes for layout, polish for polish questions
-- **Explain the question on each page** — "Which layout feels more professional?" not just "Pick one"
-- **Iterate before advancing** — if feedback changes current screen, write a new version
-- **2-4 options max** per screen
+- **Orient the reader** — name the view being shown or the question being decided
+- **Revise when needed** — if feedback changes the current screen, write a new version
+- **Show meaningful alternatives only** — there is no required number of options
 - **Use real content when it matters** — for a photography portfolio, use actual images (Unsplash). Placeholder content obscures design issues.
 - **Keep mockups simple** — focus on layout and structure, not pixel-perfect design
 

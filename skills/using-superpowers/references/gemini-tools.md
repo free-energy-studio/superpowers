@@ -2,6 +2,9 @@
 
 Skills speak in actions ("dispatch a subagent", "create a todo", "read a file"). On Gemini CLI these resolve to the tools below.
 
+These mappings apply to actions already chosen by the workflow; they do not
+require delegation or task tracking. Follow the current host's available tools.
+
 | Action skills request | Gemini CLI equivalent |
 |----------------------|----------------------|
 | Read a file | `read_file` |
@@ -41,11 +44,15 @@ Skills dispatch with `Subagent (general-purpose):` and either reference a prompt
 
 ### Prompt filling
 
-Skills provide prompt templates with placeholders like `{WHAT_WAS_IMPLEMENTED}` or `[FULL TEXT of task]`. Fill all placeholders before passing the complete prompt to `invoke_agent`. The prompt template itself contains the agent's role, review criteria, and expected output format — the subagent will follow it.
+Use the relevant prompt as an aid for a bounded brief: the task, necessary context,
+acceptance checks, and authorization limits. Pass that brief to `invoke_agent`;
+do not add a report format or extra workflow just because a template is available.
 
 ### Parallel dispatch
 
-Gemini CLI supports parallel subagent dispatch. Issue multiple `invoke_agent` calls in the same response (or multiple `@generalist` invocations in one prompt) to run independent subagent work in parallel. Keep dependent tasks sequential, but do not serialize independent subagent tasks just to preserve a simpler history.
+When delegation is useful and permitted, independent tasks can use multiple
+`invoke_agent` calls in one response. Keep dependent tasks sequential; keep work
+inline when delegation would add more coordination than value.
 
 ## Additional Gemini CLI tools
 
