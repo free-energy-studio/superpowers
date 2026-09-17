@@ -11,8 +11,8 @@ Keep short, tightly coupled work local.
 
 Before dispatch, identify each task's scope, acceptance criteria, dependencies,
 and owned files or read-only boundary. Give each agent enough context to work
-without inheriting unrelated conversation. Follow the actual host tool schema and
-model-selection policy; do not invent tool names or capabilities.
+without inheriting unrelated conversation. Follow the actual host tool schema;
+do not invent tool names or capabilities.
 
 Do not ask multiple agents to edit the same state concurrently. Shared-checkout
 agents must not switch branches, reset files, or commit others' work. Use separate

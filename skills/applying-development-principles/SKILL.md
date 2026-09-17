@@ -83,6 +83,10 @@ Use only as much planning, documentation, review, and delegation as the work nee
 Do not make users manage your workflow or read a process announcement per step.
 Follow repository constraints and higher-priority safety instructions.
 
+These skills guide delegation, not model or provider selection. Leave those
+choices to host configuration and explicit user instructions. Platform adapters
+translate tool calls; they do not choose models or providers.
+
 For Linear issue work, read [references/linear.md](references/linear.md).
 For PR delivery, use `finishing-a-development-branch`. Keep repository-specific
 teams, projects, branches, and product rules in the consuming repo's `AGENTS.md`.

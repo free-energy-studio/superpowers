@@ -79,3 +79,16 @@ These are single-sample narrated decisions, not executed incident workflows or a
 reliability benchmark. The observed improvement is preservation of the existing
 Linear policy when the fork replaces the standalone principles skill; the agentic
 and billing cases were already handled well before consolidation.
+
+## Model/provider-neutral delegation — 2026-09-17
+
+A fresh-context agent read the revised core, delegation skill, and Codex mapping.
+For two authorized independent read-only investigations, it omitted optional
+model/provider overrides and kept bounded briefs. With an explicit permitted
+user model selection, it applied that selection only to the requested task. With
+no delegation tool, it worked locally without inventing a capability. Authorization
+limits remained unchanged. These were narrated decisions, not live dispatches.
+
+Independent review found no broken active references after the unused vendor
+guide moved to historical documentation. The archive test checks that this guide
+is no longer shipped as skill guidance.

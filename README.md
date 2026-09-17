@@ -26,7 +26,8 @@ useful review, and safeguards for user work and permissions. We change the defau
 - Plans capture decisions and dependencies, not a second copy of the code.
 - Shared abstractions and defensive checks need a concrete purpose.
 - Test-first is preferred; working code is not discarded to enforce chronology.
-- Review and delegation scale with risk and useful parallelism.
+- Review and delegation scale with risk and useful parallelism, without
+  prescribing models or providers.
 - Delivery follows the user's instructions instead of a fixed menu.
 
 See the [behavioral checks](tests/free-energy/scenarios.md) for examples and scope

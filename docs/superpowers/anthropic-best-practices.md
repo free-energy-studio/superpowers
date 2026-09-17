@@ -1,5 +1,9 @@
 # Skill authoring best practices
 
+Historical upstream vendor reference, retained for attribution and context. It is
+not part of Free Energy's active or shipped skill guidance; its model-specific
+recommendations are not requirements for this fork.
+
 > Learn how to write effective Skills that agents can discover and use successfully.
 
 Good Skills are concise, well-structured, and tested with real usage. This guide provides practical authoring decisions to help you write Skills that agents can discover and use effectively.

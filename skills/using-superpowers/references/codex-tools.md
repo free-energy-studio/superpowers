@@ -7,8 +7,7 @@ Load skills with the available skill mechanism, or read their `SKILL.md` files.
 Use the host's file-editing and execution tools according to its instructions.
 
 When delegation is permitted, give agents bounded tasks and only the context they
-need. Select models and reasoning settings only as permitted by host and user
-policy. Use the host's follow-up mechanism for fixes and its completion/wait
+need. Use the host's follow-up mechanism for fixes and its completion/wait
 mechanism when idle; do not busy-poll.
 
 An existing Codex-managed workspace may already be isolated. Inspect Git state,
