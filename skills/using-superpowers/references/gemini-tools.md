@@ -34,19 +34,10 @@ User-level skills live at **`~/.gemini/skills/`**, with **`~/.agents/skills/`** 
 
 Gemini CLI dispatches subagents through the `invoke_agent` tool, which takes `agent_name` and `prompt` parameters. The same dispatch is also surfaced as a chat-syntax shortcut: typing `@generalist <prompt>` is equivalent to calling `invoke_agent` with `agent_name: "generalist"`. Built-in agent names include `generalist`, `cli_help`, `codebase_investigator`, and (with browser tooling enabled) `browser_agent`.
 
-Skills dispatch with `Subagent (general-purpose):` and either reference a prompt-template file (e.g., `superpowers:subagent-driven-development`'s `./implementer-prompt.md`) or supply an inline prompt. On Gemini CLI:
-
-| Skill dispatch form | Gemini CLI equivalent |
-|---------------------|----------------------|
-| References a `*-prompt.md` template (implementer, task-reviewer, code-reviewer, etc.) | Fill the template, then `invoke_agent` with `agent_name: "generalist"` and the filled prompt |
-| References `superpowers:requesting-code-review`'s `./code-reviewer.md` | `invoke_agent` with `agent_name: "generalist"` and the filled review template |
-| Inline prompt (no template referenced) | `invoke_agent` with `agent_name: "generalist"` and your inline prompt |
-
-### Prompt filling
-
-Use the relevant prompt as an aid for a bounded brief: the task, necessary context,
-acceptance checks, and authorization limits. Pass that brief to `invoke_agent`;
-do not add a report format or extra workflow just because a template is available.
+Pass a bounded brief to `invoke_agent`: the task, necessary context, acceptance
+checks, and authorization limits. Skill prompt templates are optional aids, not
+required forms. Do not add a report format or extra workflow just because a
+template is available.
 
 ### Parallel dispatch
 

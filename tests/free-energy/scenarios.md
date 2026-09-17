@@ -125,3 +125,16 @@ cross-host testing. The cleanup removes contradictory supporting prose and keeps
 obsolete examples out of installations; the baseline already made good decisions
 in the sampled visual cases. The package fixture additionally checks that retired
 examples stay out of the archive and the shared principles remain included.
+
+Automated review then caught two omissions in that coverage: the Gemini dispatch
+table still mandated filling templates, and browser-only selections do not start
+another agent turn. The duplicate table was removed; the companion again tells
+users to reply in the conversation when a choice remains. The earlier local
+review and scenarios did not catch these issues.
+
+After refreshing the installed copy, a new fresh-context agent narrated all three
+follow-up cases correctly: request a conversation reply after an unresolved browser
+choice; send one authorized Gemini review with a bounded brief and optional
+template; deliver settled desktop/mobile mockups together without a new approval.
+Independent review of the corrections found no remaining findings. These checks
+remain narrated scenarios plus source inspection, not live host execution.

@@ -119,7 +119,9 @@ newest file. For several views that the user should see together, put them on on
 comparison screen or provide the saved artifacts together.
 
 Share the complete URL and a brief explanation when needed. If a consequential
-choice remains, ask for it and use browser selections alongside the user's words.
+choice remains, ask for it and tell the user to reply in the conversation after
+selecting in the browser. Clicks are recorded, but do not start another agent turn.
+
 If the decisions are already settled, complete the requested work without waiting
 for approval of each screen. Do not add choices just to fill a comparison layout.
 
