@@ -1,5 +1,6 @@
 import importlib
 import os
+import re
 import sys
 
 import pytest
@@ -58,15 +59,16 @@ class TestBootstrapContent:
     def test_marker_and_wrapper(self):
         content = _bootstrap()
         assert BOOTSTRAP_MARKER in content
-        assert content.startswith("<EXTREMELY_IMPORTANT>")
-        assert content.rstrip().endswith("</EXTREMELY_IMPORTANT>")
+        assert content.startswith("<superpowers-context>")
+        assert content.rstrip().endswith("</superpowers-context>")
 
     def test_contains_using_superpowers_body(self):
         content = _bootstrap()
-        # A distinctive line from the skill body proves the real SKILL.md was
-        # embedded, not a stub.
-        assert "You have superpowers" in content
-        assert "## The Rule" in content
+        m = _load()
+        skill = os.path.join(m._skills_dir(), "using-superpowers", "SKILL.md")
+        with open(skill, encoding="utf-8") as f:
+            body = m._strip_frontmatter(f.read())
+        assert body in content
 
     def test_frontmatter_stripped(self):
         content = _bootstrap()
@@ -85,9 +87,13 @@ class TestBootstrapContent:
         assert ref_text in content
         assert "read_file" in content
 
-    def test_skill_view_guidance_present(self):
-        content = _bootstrap()
-        assert 'skill_view("superpowers:brainstorming")' in content
+    def test_skill_view_example_resolves_to_registered_skill(self, mock_ctx):
+        m = _load()
+        m.register(mock_ctx)
+        content = mock_ctx._hooks["pre_llm_call"](is_first_turn=True)["context"]
+        example = re.search(r'for example `skill_view\("([^"]+)"\)`', content)
+        assert example is not None
+        assert mock_ctx._skills[example.group(1)].is_file()
 
     def test_under_hermes_context_spill_limit(self):
         content = _bootstrap()

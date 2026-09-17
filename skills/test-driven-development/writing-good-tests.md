@@ -116,10 +116,9 @@ part of the contract, assert them — a fake that accepts anything verifies
 nothing. Give each branch (success, error, malformed) its own fixture or
 spy, so the wrong branch cannot satisfy the expectation.
 
-**Mirror real data completely.** Mock the complete structure as it exists
-in reality — all documented fields — not just the ones your test reads.
-Partial mocks fail silently when downstream code reads an omitted field:
-the test passes while integration breaks.
+**Use contract-accurate fixtures.** Include fields and side effects relevant to
+the consumer's contract. Use types, schemas, or integration checks where fixture
+drift is a real risk; do not copy unrelated payloads into every test.
 
 **Production classes carry production methods only.** Cleanup that only
 tests need lives in test utilities, never as a `destroy()` on the
@@ -139,7 +138,7 @@ BEFORE adding a mock or test helper:
   List the real method's side effects; keep the ones the test
   depends on real — mock the slow/external level below them.
 
-  Mock responses mirror the complete real structure.
+  Mock responses satisfy the consumer's real contract.
 
   A method only tests call lives in test utilities, not production.
 
@@ -149,8 +148,8 @@ BEFORE adding a mock or test helper:
 
 ## Tests Ship With the Implementation
 
-The TDD cycle — failing test, minimal implementation, refactor — is what
-"complete" means. Ship the tests the behavior needs and only those:
+Prefer a failing test, minimal implementation, and refactoring cycle. When code
+already exists, preserve it and verify that the regression test detects the defect. Ship the tests the behavior needs and only those:
 trivial code and human prose earn none, and a test written to satisfy
 process costs maintenance forever.
 
@@ -178,7 +177,7 @@ test as tautological.
 | Reach for a dependency test | Test your boundary contract, not their documented mechanics |
 | Want to assert on a mocked element | Test the real component, or unmock it |
 | Are about to mock a method | Learn its side effects; mock the slow/external level |
-| Build a mock response | Mirror the real structure completely |
+| Build a mock response | Use contract-accurate fixtures |
 | Need cleanup only tests use | Put it in test utilities |
 | Watch mock setup balloon | Switch to an integration test with real components |
 | Finish a test file | Run the mutation check |

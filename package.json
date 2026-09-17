@@ -1,7 +1,7 @@
 {
   "name": "superpowers",
-  "version": "6.3.0",
-  "description": "Superpowers skills and runtime bootstrap for coding agents",
+  "version": "6.3.0-free-energy.1",
+  "description": "Free Energy's Superpowers fork: simple, essential development with proportional workflows.",
   "type": "module",
   "main": ".opencode/plugins/superpowers.js",
   "keywords": [

@@ -84,13 +84,13 @@ test('startup context injects the bootstrap as one user message until agent_end'
 
   assert.equal(result.messages.length, 2);
   assert.equal(result.messages[0].role, 'user');
-  assert.match(textOf(result.messages[0]), /You have superpowers/);
+  assert.match(textOf(result.messages[0]), /superpowers:using-superpowers bootstrap for pi/);
   assert.match(textOf(result.messages[0]), /Pi tool mapping/);
   assert.equal(result.messages[1], originalMessages[0]);
 
   const repeatedProviderRequest = await context({ type: 'context', messages: originalMessages }, {});
   assert.equal(repeatedProviderRequest.messages.length, 2);
-  assert.match(textOf(repeatedProviderRequest.messages[0]), /You have superpowers/);
+  assert.match(textOf(repeatedProviderRequest.messages[0]), /superpowers:using-superpowers bootstrap for pi/);
 
   const alreadyInjected = await context({ type: 'context', messages: result.messages }, {});
   assert.equal(alreadyInjected, undefined, 'bootstrap should not duplicate when already present');
@@ -98,6 +98,28 @@ test('startup context injects the bootstrap as one user message until agent_end'
   await agentEnd({ type: 'agent_end', messages: [] }, {});
   const afterEnd = await context({ type: 'context', messages: originalMessages }, {});
   assert.equal(afterEnd, undefined, 'startup bootstrap should clear after agent_end');
+});
+
+test('marker mentions do not suppress bootstrap in string or text-part messages', async () => {
+  const mention = 'Explain the superpowers:using-superpowers bootstrap for pi marker.';
+  for (const content of [mention, [{ type: 'text', text: mention }]]) {
+    const { handlers } = await loadExtension();
+    const context = firstHandler(handlers, 'context');
+    const user = { role: 'user', content, timestamp: 1 };
+    const result = await context({ type: 'context', messages: [user] }, {});
+
+    assert.equal(result?.messages.length, 2, 'a marker mention still needs the full bootstrap');
+    assert.match(textOf(result.messages[0]), /Pi tool mapping/);
+    assert.equal(result.messages[1], user, 'original user content is preserved');
+    assert.equal(await context({ type: 'context', messages: result.messages }, {}), undefined);
+
+    const stringBootstrap = { ...result.messages[0], content: textOf(result.messages[0]) };
+    assert.equal(
+      await context({ type: 'context', messages: [stringBootstrap, user] }, {}),
+      undefined,
+      'the full bootstrap is recognized in either content shape',
+    );
+  }
 });
 
 test('session_compact injects bootstrap after compaction summaries, not before compaction', async () => {
@@ -114,7 +136,7 @@ test('session_compact injects bootstrap after compaction summaries, not before c
   assert.equal(result.messages.length, 3);
   assert.equal(result.messages[0], summary);
   assert.equal(result.messages[1].role, 'user');
-  assert.match(textOf(result.messages[1]), /You have superpowers/);
+  assert.match(textOf(result.messages[1]), /superpowers:using-superpowers bootstrap for pi/);
   assert.equal(result.messages[2], user);
 });
 

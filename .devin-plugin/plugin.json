@@ -1,13 +1,13 @@
 {
   "name": "superpowers",
-  "version": "6.3.0",
-  "description": "An agentic skills framework & software development methodology that works: planning, TDD, debugging, and collaboration workflows.",
+  "version": "6.3.0-free-energy.1",
+  "description": "Free Energy's Superpowers fork: simple, essential development with proportional workflows.",
   "author": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com"
+    "name": "Free Energy",
+    "url": "https://github.com/free-energy-studio"
   },
-  "homepage": "https://github.com/obra/superpowers",
-  "repository": "https://github.com/obra/superpowers",
+  "homepage": "https://github.com/free-energy-studio/superpowers",
+  "repository": "https://github.com/free-energy-studio/superpowers",
   "license": "MIT",
   "keywords": [
     "brainstorming",

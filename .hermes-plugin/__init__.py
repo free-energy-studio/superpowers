@@ -8,7 +8,7 @@ BOOTSTRAP_MARKER = "superpowers:using-superpowers bootstrap for hermes"
 def _skills_dir() -> str:
     """Locate the stock skills/ tree for either supported install layout.
 
-    - git-clone install (`hermes plugins install obra/superpowers`): the plugin
+    - git-clone install (`hermes plugins install free-energy-studio/superpowers`): the plugin
       dir is the repo root, so `.hermes-plugin/` and `skills/` are siblings and
       this module resolves `../skills`.
     - flattened install (plugin files copied to the plugin dir root): `skills/`
@@ -28,7 +28,7 @@ def _skills_dir() -> str:
     raise RuntimeError(
         "superpowers plugin: cannot find the skills/ tree "
         f"(looked at {candidates}). Reinstall with "
-        "`hermes plugins install obra/superpowers`."
+        "`hermes plugins install free-energy-studio/superpowers`."
     )
 
 
@@ -51,23 +51,23 @@ def _build_bootstrap(skills_dir: str) -> str:
         tool_mapping = f.read().strip()
 
     return (
-        f"<EXTREMELY_IMPORTANT>\n"
+        f"<superpowers-context>\n"
         f"{BOOTSTRAP_MARKER}\n\n"
-        f"You have superpowers.\n\n"
+        f"Free Energy Superpowers guidance.\n\n"
         f"The using-superpowers skill content is included below and is already "
-        f"loaded for this Hermes session. Follow it now. "
-        f"Do not try to load using-superpowers again.\n\n"
+        f"loaded for this Hermes session. "
+        f"No need to load using-superpowers again.\n\n"
         f"{body}\n\n"
         f"## Loading Superpowers Skills on Hermes\n\n"
         f"Superpowers skills are registered with Hermes' native skill loader: "
-        f'invoke one with `skill_view("superpowers:skill-name")` '
-        f'(for example `skill_view("superpowers:brainstorming")`). '
-        f"If a namespaced lookup returns 'not found', read the skill file "
+        f'invoke one with `skill_view("skill-name")` '
+        f'(for example `skill_view("brainstorming")`). '
+        f"If a lookup returns 'not found', read the skill file "
         f"directly instead:\n"
         f'`read_file("{skills_dir}/skill-name/SKILL.md")`\n\n'
         f"The superpowers skills directory is: `{skills_dir}`\n\n"
         f"{tool_mapping}\n"
-        f"</EXTREMELY_IMPORTANT>"
+        f"</superpowers-context>"
     )
 
 
