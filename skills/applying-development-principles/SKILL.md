@@ -1,6 +1,6 @@
 ---
 name: applying-development-principles
-description: Use when designing, implementing, refactoring, or reviewing software to choose the simplest correct solution to the current requirements.
+description: Use for Free Energy engineering judgment when designing, debugging, implementing, reviewing, or delivering software and agentic systems.
 ---
 
 # Development Principles
@@ -8,11 +8,17 @@ description: Use when designing, implementing, refactoring, or reviewing softwar
 Build the simplest correct, complete solution to the current request.
 Simple means fewer concepts and a clear flow, not fewer lines at any cost.
 
+Preserve correct, tested behavior first. Then eliminate duplicated knowledge,
+make intent obvious, and use the fewest necessary concepts and moving parts.
+Security, privacy, and explicit product requirements constrain these choices.
+These principles govern the workflows; they are not an extra step after them.
+
 ## Start with what exists
 
 Read the relevant code, contracts, callers, and tests before inventing a pattern.
 Reuse established representations and sources of truth. Extend an existing path
 when it fits; do not force a bad abstraction just because it already exists.
+Prefer modest duplication to coupling things that do not share a real concept.
 
 Distinguish facts from proposals. If the user asks whether a field or mechanism
 already exists, inspect it before answering.
@@ -38,12 +44,28 @@ essential even when it adds code. Judge it by the guarantee it provides, not its
 size. Validate untrusted inputs and protect critical invariants at the appropriate
 boundary; typed internal helpers need not repeat the same checks.
 
+Harden proactively for security, privacy, permissions, billing, data integrity,
+and irreversible effects. For other hardening, require demonstrated risk.
+Prefer reversible, observable delivery with a clear rollback. If delivery pressure
+conflicts with a safety boundary, narrow, disable, or delay the capability rather
+than bypass that boundary.
+
 ## Agentic systems
 
-When model behavior is wrong, inspect the context, tools, and evidence it actually
-received. Supply missing state at the source. Use deterministic controls for crisp
-boundaries such as permissions and approvals; do not add semantic output rewriting
-or retry loops to compensate for an underspecified model-visible situation.
+SCENE: shape context and environment, not expression. Give the model accurate,
+authorized context, visible state, useful tools, and clear evidence requirements.
+Shape semantic behavior there, not through deterministic rewriting, suppression,
+retrying, or rerouting of generated meaning.
+
+Use deterministic controls for crisp boundaries: permissions, approvals,
+irreversible actions, idempotency, billing, data integrity, and protocol rules.
+When a product fact must match authoritative state, render or control it from
+typed state rather than asking the model to author it. Post-generation handling
+is for mechanical protocol work such as schema validation, encoding, internal
+markup containment, and bounded retries for transient failures.
+
+For incorrect model behavior, use the scene-reconstruction method in
+`systematic-debugging`; do not compensate for missing context with an output filter.
 
 ## Match the task
 
@@ -52,9 +74,18 @@ implementation and verification. Discussing a design is not permission to build 
 An explicit bounded implementation request does not need another approval of the
 same intent. Ask when an unresolved choice materially changes scope or outcome.
 
+Be resourceful within the authorized scope: inspect available evidence and pursue
+useful safe checks before escalating. Make the safest narrow assumption when it
+does not risk data loss, production impact, or significant rework. Missing authority
+or a consequential user choice is a reason to ask, not to improvise permission.
+
 Use only as much planning, documentation, review, and delegation as the work needs.
 Do not make users manage your workflow or read a process announcement per step.
 Follow repository constraints and higher-priority safety instructions.
+
+For Linear issue work, read [references/linear.md](references/linear.md).
+For PR delivery, use `finishing-a-development-branch`. Keep repository-specific
+teams, projects, branches, and product rules in the consuming repo's `AGENTS.md`.
 
 ## Simplify before handing over
 

@@ -43,11 +43,21 @@ const afterSecond = { existsCount, readCount };
 // Some hosts reuse the already-transformed array on the next callback.
 await transform({}, firstOutput);
 
+// Mentioning the marker is not the same as receiving the bootstrap.
+const markerText = 'Explain the superpowers-context marker.';
+const markerOutput = makeOutput(markerText);
+await transform({}, markerOutput);
+await transform({}, markerOutput);
+
 const result = {
   scenario,
   firstBootstrapParts: countBootstrapParts(firstOutput),
   secondBootstrapParts: countBootstrapParts(secondOutput),
   repeatedBootstrapParts: countBootstrapParts(firstOutput),
+  markerBootstrapParts: markerOutput.messages[0].parts.filter(
+    (part) => part.type === 'text' && part.text === bootstrapText(firstOutput)
+  ).length,
+  markerTextPreserved: markerOutput.messages[0].parts.at(-1).text === markerText,
   staleMentionMapping: bootstrapText(firstOutput).includes('@mention'),
   staleTaskMapping: bootstrapText(firstOutput).includes('`Task` tool with subagents'),
   mapsSubagentToTask: bootstrapText(firstOutput).includes('`task` with `subagent_type: "general"`'),
@@ -61,6 +71,10 @@ const result = {
 const failures = scenario === 'present'
   ? assertPresentBootstrap(result)
   : assertMissingBootstrap(result);
+
+if (!result.markerTextPreserved) {
+  failures.push('expected the original user text mentioning the marker to be preserved');
+}
 
 if (failures.length > 0) {
   console.error(JSON.stringify(result, null, 2));
@@ -108,6 +122,9 @@ function assertPresentBootstrap(result) {
   if (result.repeatedBootstrapParts !== 1) {
     failures.push(`expected a repeated transform not to duplicate bootstrap, got ${result.repeatedBootstrapParts}`);
   }
+  if (result.markerBootstrapParts !== 1) {
+    failures.push(`expected marker mention to receive exactly one bootstrap, got ${result.markerBootstrapParts}`);
+  }
   if (result.firstReadCount !== 1) {
     failures.push(`expected first transform to read SKILL.md once, got ${result.firstReadCount}`);
   }
@@ -139,6 +156,9 @@ function assertMissingBootstrap(result) {
   }
   if (result.secondBootstrapParts !== 0) {
     failures.push(`expected no bootstrap on second missing-file transform, got ${result.secondBootstrapParts}`);
+  }
+  if (result.markerBootstrapParts !== 0) {
+    failures.push(`expected no bootstrap for marker mention when SKILL.md is missing, got ${result.markerBootstrapParts}`);
   }
   if (result.firstReadCount !== 0 || result.secondReadCount !== 0) {
     failures.push(`expected missing file path to avoid reads, got ${result.secondReadCount}`);

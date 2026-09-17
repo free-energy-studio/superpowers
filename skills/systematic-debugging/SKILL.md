@@ -5,9 +5,12 @@ description: Use when a bug, test failure, or unexpected behavior needs causal i
 
 # Debug from Evidence
 
-Establish what happened, what should have happened, and the smallest useful
-reproduction or trace. Inspect the relevant code and recent changes. Keep
-observations separate from hypotheses.
+Apply `applying-development-principles`. Establish what happened, what should have
+happened, and the smallest useful reproduction or trace. Inspect the relevant code
+and recent changes. Keep observations separate from hypotheses.
+
+CURE: correct underlying causes, not effects. Establish the supported causal chain
+before choosing a permanent repair. An incident mitigation is not proof of cause.
 
 Trace the failure through the affected boundaries until you can explain its cause.
 Use existing logs and tests first. Add focused diagnostics only when evidence is
@@ -32,6 +35,17 @@ For an authorized fix:
 - Verify the changed path and relevant integration behavior.
 
 Keep the repair proportional. Do not turn one defect into a speculative rewrite.
+
+## Model-behavior failures
+
+Reconstruct the exact model-visible situation: prompts, retrieved context,
+filtering and transformations, tools, permissions, lifecycle state, and available
+evidence. Identify which condition for successful reasoning was missing or wrong.
+Choose the least brittle structural correction using the core skill's SCENE
+principle. Cover the reasoning/failure class, not only one recorded conversation.
+
+When tracking the investigation in Linear, read
+[the Linear workflow](../applying-development-principles/references/linear.md).
 
 Supporting techniques, when relevant:
 `root-cause-tracing.md`, `condition-based-waiting.md`, and `defense-in-depth.md`.

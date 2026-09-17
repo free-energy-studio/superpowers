@@ -29,6 +29,10 @@ repository's location convention.
 Check that the plan covers the current request without introducing extra work.
 Use one canonical spec; the plan links to it.
 
+When work is tracked in Linear, read
+[the Linear workflow](../applying-development-principles/references/linear.md)
+for specification, evidence, and implementation-plan placement.
+
 If implementation is already authorized, continue through `executing-plans`.
 If the user asked only for a plan, deliver the plan. Do not force a choice between
 agent workflows or assume permission to implement.

@@ -60,3 +60,22 @@ the earlier results, for two additional narrated scenarios:
 
 Both choices matched the intended behavior. These remain single-sample narrated
 checks, not live Kimi tool execution. The Kimi manifest check also passed.
+
+## Free Energy principles consolidation — 2026-09-17
+
+The baseline agent read the fork at `47ff7d6`, without the separately installed
+Free Energy principles. The revised agent read the consolidated fork, without
+the baseline answers or expected outcomes. Neither changed external state.
+
+| Prompt / context | Baseline | Consolidated guidance |
+| --- | --- | --- |
+| Authorized Linear tracking: report R exists and fix F may match. Choose records, specification/evidence placement, and branch name. | Reused R for investigation evidence and invented a branch name. | Kept R, created a distinct investigation, verified/reused F, separated specification from evidence/plan, and used Linear's exact branch name. |
+| A tool succeeded; a later UI change caused the model to retract the earlier success. | Reconstructed context and preserved the distinction between historical success and current state. | Preserved that behavior, using authoritative typed state and a regression covering intervening changes. |
+| Simplify billing by removing an approval token and idempotency key. | Preserved their distinct authorization and retry guarantees. | Preserved those guarantees and proposed removing only demonstrated duplication. |
+| Explain a production failure; do not change anything. Should an investigation ticket be created? | Not sampled. | Kept diagnosis read-only; no ticket writes or claim of persistence. |
+| A Free Energy PR targets main; the CodeRabbit helper is unavailable. User explicitly requests push and handoff with review pending, no merge. | Not sampled. | Honored the handoff, kept required review explicitly incomplete, and did not merge. |
+
+These are single-sample narrated decisions, not executed incident workflows or a
+reliability benchmark. The observed improvement is preservation of the existing
+Linear policy when the fork replaces the standalone principles skill; the agentic
+and billing cases were already handled well before consolidation.

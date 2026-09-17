@@ -9,8 +9,10 @@ Skills are task-specific guidance, not a sequence every request must traverse.
 Answer simple questions directly. Do not load a workflow because a keyword happens
 to match, re-load unchanged instructions for every follow-up, or announce each skill.
 
-For software design and changes, use `applying-development-principles` as the
-engineering standard. Load other skills when they help with the actual task:
+For software work, use `applying-development-principles` as the engineering
+standard. Its principles govern the choice and depth of the workflows below;
+they are not a separate layer applied afterward. Load other skills when they
+help with the actual task:
 
 - Unresolved product or design choices: `brainstorming`.
 - A bug whose cause is unknown: `systematic-debugging`.
@@ -24,6 +26,10 @@ engineering standard. Load other skills when they help with the actual task:
 - Useful, permitted delegation: `dispatching-parallel-agents` or
   `subagent-driven-development`.
 - Authoring instructions: `writing-skills`.
+
+For Linear issue work or an issue-linked branch, read
+[the Linear workflow](../applying-development-principles/references/linear.md).
+Do not load ticket policy for unrelated development or ordinary questions.
 
 Load an explicitly requested skill. Read applicable instructions before relying on
 them, using the host's native skill loader or file reader. Read supporting material

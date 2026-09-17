@@ -167,6 +167,7 @@ unexpected_pattern='(^superpowers/|^\.agents/|^hooks/|package\.json$|^\.git|^\.p
 assert_not_matches "$archive_paths" "$unexpected_pattern" "archive excludes source-only paths"
 assert_contains "$archive_paths" ".codex-plugin/plugin.json" "archive includes Codex manifest"
 assert_contains "$archive_paths" "skills/brainstorming/SKILL.md" "archive includes skills"
+assert_contains "$archive_paths" "skills/applying-development-principles/references/linear.md" "archive includes consolidated Linear guidance"
 assert_contains "$archive_paths" "skills/brainstorming/agents/openai.yaml" "archive includes OpenAI skill metadata"
 assert_contains "$archive_paths" "assets/app-icon.png" "archive includes app icon"
 assert_contains "$archive_paths" "assets/superpowers-small.svg" "archive includes composer icon"
