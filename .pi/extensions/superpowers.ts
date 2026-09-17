@@ -33,10 +33,10 @@ export default function superpowersPiExtension(pi: ExtensionAPI) {
 
 	pi.on("context", async (event) => {
 		if (!injectBootstrap) return;
-		if (event.messages.some(messageContainsBootstrap)) return;
 
 		const bootstrap = getBootstrapContent();
 		if (!bootstrap) return;
+		if (event.messages.some((message) => messageContainsBootstrap(message, bootstrap))) return;
 
 		const bootstrapMessage = {
 			role: "user" as const,
@@ -96,17 +96,16 @@ Pi does not ship a standard subagent tool. If a subagent tool such as \`subagent
 Pi does not ship a standard task-list tool. If an installed todo/task tool is available, use it. Otherwise track work in plan files or a repo-local \`TODO.md\` when task tracking is needed. Treat older \`TodoWrite\` references as this task-tracking action.`;
 }
 
-function messageContainsBootstrap(message: unknown): boolean {
+function messageContainsBootstrap(message: unknown, bootstrap: string): boolean {
 	const content = (message as { content?: unknown }).content;
-	if (typeof content === "string") return content.includes(BOOTSTRAP_MARKER);
+	if (typeof content === "string") return content === bootstrap;
 	if (!Array.isArray(content)) return false;
 	return content.some((part) => {
 		return (
 			part &&
 			typeof part === "object" &&
 			(part as { type?: unknown }).type === "text" &&
-			typeof (part as { text?: unknown }).text === "string" &&
-			(part as { text: string }).text.includes(BOOTSTRAP_MARKER)
+			(part as { text?: unknown }).text === bootstrap
 		);
 	});
 }

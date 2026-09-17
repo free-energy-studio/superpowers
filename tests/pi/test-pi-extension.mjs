@@ -100,6 +100,28 @@ test('startup context injects the bootstrap as one user message until agent_end'
   assert.equal(afterEnd, undefined, 'startup bootstrap should clear after agent_end');
 });
 
+test('marker mentions do not suppress bootstrap in string or text-part messages', async () => {
+  const mention = 'Explain the superpowers:using-superpowers bootstrap for pi marker.';
+  for (const content of [mention, [{ type: 'text', text: mention }]]) {
+    const { handlers } = await loadExtension();
+    const context = firstHandler(handlers, 'context');
+    const user = { role: 'user', content, timestamp: 1 };
+    const result = await context({ type: 'context', messages: [user] }, {});
+
+    assert.equal(result?.messages.length, 2, 'a marker mention still needs the full bootstrap');
+    assert.match(textOf(result.messages[0]), /Pi tool mapping/);
+    assert.equal(result.messages[1], user, 'original user content is preserved');
+    assert.equal(await context({ type: 'context', messages: result.messages }, {}), undefined);
+
+    const stringBootstrap = { ...result.messages[0], content: textOf(result.messages[0]) };
+    assert.equal(
+      await context({ type: 'context', messages: [stringBootstrap, user] }, {}),
+      undefined,
+      'the full bootstrap is recognized in either content shape',
+    );
+  }
+});
+
 test('session_compact injects bootstrap after compaction summaries, not before compaction', async () => {
   const { handlers } = await loadExtension();
   const sessionCompact = firstHandler(handlers, 'session_compact');

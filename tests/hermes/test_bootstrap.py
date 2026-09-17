@@ -1,5 +1,6 @@
 import importlib
 import os
+import re
 import sys
 
 import pytest
@@ -86,9 +87,13 @@ class TestBootstrapContent:
         assert ref_text in content
         assert "read_file" in content
 
-    def test_skill_view_guidance_present(self):
-        content = _bootstrap()
-        assert 'skill_view("superpowers:brainstorming")' in content
+    def test_skill_view_example_resolves_to_registered_skill(self, mock_ctx):
+        m = _load()
+        m.register(mock_ctx)
+        content = mock_ctx._hooks["pre_llm_call"](is_first_turn=True)["context"]
+        example = re.search(r'for example `skill_view\("([^"]+)"\)`', content)
+        assert example is not None
+        assert mock_ctx._skills[example.group(1)].is_file()
 
     def test_under_hermes_context_spill_limit(self):
         content = _bootstrap()
