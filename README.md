@@ -40,9 +40,10 @@ and the internal plugin identifier remain `superpowers` for compatibility.
 Check for repository-local or personal copies of the same skills: those can still
 supply the old instructions even after a plugin is replaced.
 
-Migrate the standalone Free Energy principles skill together with the workflow
-skills; do not keep an independently maintained copy alongside this one. For
-vendored installations, update their recorded source/revision as well as the files.
+Install the complete `skills/` tree: all 15 skills, including
+`applying-development-principles`. The workflows depend on that bundled core;
+do not omit it when removing the old standalone principles skill. For vendored
+installations, update their recorded source/revision as well as the files.
 Repository-specific rules remain in the consuming repo's `AGENTS.md`.
 
 The existing `gh-coderabbit-review-loop` integration remains separately installed
@@ -73,9 +74,11 @@ Read [CLAUDE.md](CLAUDE.md) (also exposed as `AGENTS.md`).
 Verification commands and limitations are in [docs/testing.md](docs/testing.md).
 Contribute through a topic branch and a pull request against this fork's `main`.
 
-Historical design documents under `docs/plans/` and `docs/superpowers/`, historical
-creation logs, and upstream release notes describe upstream decisions. They are
-not the current workflow. The active skill files and their linked references are.
+Historical design documents under `docs/plans/` and `docs/superpowers/`, including
+retired instruction examples in `docs/superpowers/history/`, describe upstream
+decisions. They and the upstream release notes are not the current workflow and
+are not part of the shipped skill tree. The active skills and their linked
+references are the current guidance.
 
 ## Attribution
 

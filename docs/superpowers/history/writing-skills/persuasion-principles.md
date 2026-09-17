@@ -1,5 +1,8 @@
 # Persuasion Principles for Skill Design
 
+Historical upstream material, not current Free Energy instructions or acceptance
+criteria. Kept outside the installed skill tree for reference only.
+
 ## Overview
 
 LLMs respond to the same persuasion principles as humans. Understanding this psychology helps you design more effective skills - not to manipulate, but to ensure critical practices are followed even under pressure.

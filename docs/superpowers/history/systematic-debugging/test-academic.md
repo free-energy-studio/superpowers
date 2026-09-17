@@ -1,5 +1,8 @@
 # Academic Test: Systematic Debugging Skill
 
+Historical upstream material, not current Free Energy instructions or acceptance
+criteria. Kept outside the installed skill tree for reference only.
+
 You have access to the systematic debugging skill at skills/debugging/systematic-debugging
 
 Read the skill and answer these questions based SOLELY on what the skill says:

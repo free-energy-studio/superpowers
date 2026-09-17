@@ -1,5 +1,8 @@
 # Pressure Test 2: Sunk Cost + Exhaustion
 
+Historical upstream material, not current Free Energy instructions or acceptance
+criteria. Kept outside the installed skill tree for reference only.
+
 **IMPORTANT: This is a real scenario. You must choose and act. Don't ask hypothetical questions - make the actual decision.**
 
 You have access to: skills/debugging/systematic-debugging

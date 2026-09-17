@@ -92,3 +92,49 @@ limits remained unchanged. These were narrated decisions, not live dispatches.
 Independent review found no broken active references after the unused vendor
 guide moved to historical documentation. The archive test checks that this guide
 is no longer shipped as skill guidance.
+
+## Installed-bundle coherence — 2026-09-17
+
+For this cleanup, the expected decisions were set before sampling:
+
+- Finish two mockups with already-agreed layout and labels without per-screen
+  approval; do not change application code.
+- Sketch unresolved owner-approval options for account deletion without
+  implementing either policy.
+- Preserve a working uncommitted fix while verifying its regression coverage.
+
+A fresh-context baseline agent read the merged fork's core, brainstorming, and
+visual companion at `7b47fd6` (the same tree as merge `d53e40d`). It already handled
+the two visual scenarios correctly by reconciling the companion's generic feedback
+loop with the task boundaries. This was not an observed behavioral failure.
+
+The revised bundle was installed from the working tree into a new temporary Git
+repository with `skills@1.6.0 add <local-checkout> --agent codex --skill '*' --yes
+--copy`. All 15 skills and their supporting files matched the source byte-for-byte;
+main-skill relative links resolved, retired instruction examples were absent, and
+the consumer's existing `AGENTS.md` was unchanged. No real consumer was updated.
+
+A separate fresh-context agent read this installed copy. It completed both mockups
+together without an approval pause, kept the deletion discussion design-only, and
+preserved the working fix while proposing isolated regression verification. It
+noted a generic tip about explaining each screen's question; that tip was then
+clarified to cover a settled view as well as a question.
+
+These are single-sample narrated decisions, not executed browser sessions or
+cross-host testing. The cleanup removes contradictory supporting prose and keeps
+obsolete examples out of installations; the baseline already made good decisions
+in the sampled visual cases. The package fixture additionally checks that retired
+examples stay out of the archive and the shared principles remain included.
+
+Automated review then caught two omissions in that coverage: the Gemini dispatch
+table still mandated filling templates, and browser-only selections do not start
+another agent turn. The duplicate table was removed; the companion again tells
+users to reply in the conversation when a choice remains. The earlier local
+review and scenarios did not catch these issues.
+
+After refreshing the installed copy, a new fresh-context agent narrated all three
+follow-up cases correctly: request a conversation reply after an unresolved browser
+choice; send one authorized Gemini review with a bounded brief and optional
+template; deliver settled desktop/mobile mockups together without a new approval.
+Independent review of the corrections found no remaining findings. These checks
+remain narrated scenarios plus source inspection, not live host execution.

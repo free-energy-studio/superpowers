@@ -1,5 +1,8 @@
 # Testing CLAUDE.md Skills Documentation
 
+Historical upstream material, not current Free Energy instructions or acceptance
+criteria. Kept outside the installed skill tree for reference only.
+
 Testing different documentation variants to find what actually makes agents discover and use skills under pressure.
 
 ## Test Scenarios
