@@ -13,8 +13,9 @@ handing work over.
 
 Free Energy's formerly separate development-principles guidance is consolidated
 here. Engineering judgment lives in that core skill, causal and model-context
-investigation in `systematic-debugging`, Linear policy in its
-[optional reference](skills/applying-development-principles/references/linear.md),
+investigation in `systematic-debugging`, Linear policy in the separately installed
+`linear` skill through an
+[optional entry point](skills/applying-development-principles/references/linear.md),
 and PR policy in `finishing-a-development-branch`. Principles govern the workflows,
 not an additional process layer.
 
@@ -45,6 +46,13 @@ Install the complete `skills/` tree: all 15 skills, including
 do not omit it when removing the old standalone principles skill. For vendored
 installations, update their recorded source/revision as well as the files.
 Repository-specific rules remain in the consuming repo's `AGENTS.md`.
+
+For Linear work, also install the `linear` skill from
+[`free-energy-studio/skills`](https://github.com/free-energy-studio/skills/tree/main/linear)
+through the consuming project's skill manager. Shared Linear policy lives there;
+project-specific workspace, routing, and review settings live in `docs/linear/`.
+The bundled Linear reference reports a missing dependency rather than inventing
+another policy copy. Other development work does not require this integration.
 
 The existing `gh-coderabbit-review-loop` integration remains separately installed
 where required; this consolidation preserves the review policy without copying

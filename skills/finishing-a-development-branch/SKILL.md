@@ -10,9 +10,10 @@ confirm the branch, remote, and intended base, and preserve unrelated user work.
 
 For Free Energy work intended for `dev` or `main`, deliver through a separate
 branch and PR unless the user explicitly overrides that policy. Read the consuming
-repository's `AGENTS.md` for its base branch, checks, and approvals. When creating
-an issue-linked branch, follow
+repository's `AGENTS.md` for its base branch, checks, and approvals. For issue-linked
+branches and PRs, follow
 [the Linear workflow](../applying-development-principles/references/linear.md).
+It owns branch naming and visible PR linkage rules.
 
 Follow the already-agreed delivery path. If the user requested a pull request,
 open it after the required checks; do not ask them to choose the same action again.
