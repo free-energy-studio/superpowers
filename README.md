@@ -48,8 +48,10 @@ installations, update their recorded source/revision as well as the files.
 Repository-specific rules remain in the consuming repo's `AGENTS.md`.
 
 For Linear work, also install the `linear` skill from
-[`free-energy-studio/skills`](https://github.com/free-energy-studio/skills/tree/main/linear)
-through the consuming project's skill manager. Shared Linear policy lives there;
+[`free-energy-studio/skills`](https://github.com/free-energy-studio/skills/tree/d25d580dfab47664391a8d7f1724982b93f479cd/linear)
+through the consuming project's skill manager, using that pinned revision.
+The revision contains the consolidated policy while its source PR is pending;
+an older `main` may supply only the CLI catalog. Shared Linear policy lives there;
 project-specific workspace, routing, and review settings live in `docs/linear/`.
 The bundled Linear reference reports a missing dependency rather than inventing
 another policy copy. Other development work does not require this integration.

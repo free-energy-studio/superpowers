@@ -3,7 +3,7 @@
 The dated observations below describe their tested revisions. Shared Linear
 policy now lives in the separately installed `linear` skill; the compatibility
 reference delegates to it. Current consolidation smoke evidence is in
-[`free-energy-studio/skills/tests/linear/scenarios.md`](https://github.com/free-energy-studio/skills/blob/main/tests/linear/scenarios.md).
+[`free-energy-studio/skills/tests/linear/scenarios.md`](https://github.com/free-energy-studio/skills/blob/d25d580dfab47664391a8d7f1724982b93f479cd/tests/linear/scenarios.md).
 
 Run these as independent prompts with the applicable skills, without showing the
 agent the expected behavior. Compare with the upstream instructions when useful.

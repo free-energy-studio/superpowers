@@ -6,7 +6,9 @@ rules; this reference is a compatibility entry point, not another policy copy.
 Load it only for Linear work or issue-linked delivery.
 
 The skill's source is
-[`free-energy-studio/skills/linear`](https://github.com/free-energy-studio/skills/tree/main/linear).
+[`free-energy-studio/skills/linear`](https://github.com/free-energy-studio/skills/tree/d25d580dfab47664391a8d7f1724982b93f479cd/linear).
+Use this pinned revision through the consuming project's skill manager so the
+dependency includes the consolidated policy before its source PR lands.
 Read the consuming project's `AGENTS.md` and `docs/linear/` for workspace, routing,
 and product-specific review requirements.
 
