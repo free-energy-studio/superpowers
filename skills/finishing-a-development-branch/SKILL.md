@@ -11,8 +11,7 @@ confirm the branch, remote, and intended base, and preserve unrelated user work.
 For Free Energy work intended for `dev` or `main`, deliver through a separate
 branch and PR unless the user explicitly overrides that policy. Read the consuming
 repository's `AGENTS.md` for its base branch, checks, and approvals. When creating
-an issue-linked branch, follow
-[the Linear workflow](../applying-development-principles/references/linear.md).
+an issue-linked branch, use the installed `linear` skill and repository policy.
 
 Follow the already-agreed delivery path. If the user requested a pull request,
 open it after the required checks; do not ask them to choose the same action again.
@@ -22,12 +21,12 @@ Before pushing or opening a pull request, summarize verification and remaining
 risk. Follow the repository's branch protections and review requirements. Do not
 merge, release, or deploy merely because implementation was authorized.
 
-Free Energy PRs targeting `dev` or `main` require CodeRabbit follow-through via
-the separately installed `gh-coderabbit-review-loop` skill. That integration owns
-the review mechanics; this fork does not bundle a second copy. If unavailable,
-report the required review as incomplete. Honor an explicit user instruction to
-hand off with review pending, but do not describe that as completed review or
-permission to merge. Other required checks still apply.
+For Free Energy PR delivery, use the separately installed `develop` and `review`
+skills and the repository's selected reviewer policy. They own review routing
+and follow-through; this fork does not bundle another integration. If required
+guidance is unavailable, report the setup gap and incomplete review. Honor an
+explicit user instruction to hand off with review pending, but do not describe
+that as completed review or permission to merge. Other required checks still apply.
 
 A failed check should be explained, not hidden. Do not present work as ready when
 required verification failed; a clearly labeled draft handoff can still be useful

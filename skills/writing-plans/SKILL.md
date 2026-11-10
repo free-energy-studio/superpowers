@@ -5,7 +5,7 @@ description: Use when implementation needs meaningful sequencing, coordination, 
 
 # Write an Executable Plan
 
-Use `applying-development-principles`. Inspect the code and the approved requirements.
+Use `apply-development-principles`. Inspect the code and the approved requirements.
 A plan should resolve dependencies and make completion testable, not prewrite the
 implementation or repeat the spec.
 
@@ -29,9 +29,8 @@ repository's location convention.
 Check that the plan covers the current request without introducing extra work.
 Use one canonical spec; the plan links to it.
 
-When work is tracked in Linear, read
-[the Linear workflow](../applying-development-principles/references/linear.md)
-for specification, evidence, and implementation-plan placement.
+When work is tracked in Linear, use the installed `spec` and `linear` skills
+and repository policy for specification, evidence, and plan placement.
 
 If implementation is already authorized, continue through `executing-plans`.
 If the user asked only for a plan, deliver the plan. Do not force a choice between

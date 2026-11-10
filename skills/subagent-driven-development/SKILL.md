@@ -5,7 +5,7 @@ description: Use when an approved implementation benefits from permitted delegat
 
 # Coordinate Bounded Implementation
 
-Use `applying-development-principles`. Delegation is an execution choice, not a
+Use `apply-development-principles`. Delegation is an execution choice, not a
 mandatory stage after planning. Keep work inline when that is simpler or when
 agents are unavailable.
 

@@ -6,17 +6,13 @@ code or workflow.
 
 ## What changes
 
-The engineering standard is
-[applying-development-principles](skills/applying-development-principles/SKILL.md):
-start with existing code, make new concepts earn their place, and simplify before
-handing work over.
-
-Free Energy's formerly separate development-principles guidance is consolidated
-here. Engineering judgment lives in that core skill, causal and model-context
-investigation in `systematic-debugging`, Linear policy in its
-[optional reference](skills/applying-development-principles/references/linear.md),
-and PR policy in `finishing-a-development-branch`. Principles govern the workflows,
-not an additional process layer.
+Engineering judgment lives in the separately installed
+[apply-development-principles](https://github.com/free-energy-studio/skills/tree/main/skills/development/apply-development-principles)
+skill from `free-energy-studio/skills`. This fork owns procedural guidance;
+principles govern the workflows rather than adding another process layer.
+Tracker policy belongs to the shared `orchestrate`, `spec`, and tracker skills
+selected by the consuming repository. PR delivery follows `develop` and `review`
+when those shared skills are installed.
 
 We preserve evidence-based debugging, meaningful tests, honest verification,
 useful review, and safeguards for user work and permissions. We change the defaults:
@@ -40,16 +36,20 @@ and the internal plugin identifier remain `superpowers` for compatibility.
 Check for repository-local or personal copies of the same skills: those can still
 supply the old instructions even after a plugin is replaced.
 
-Install the complete `skills/` tree: all 15 skills, including
-`applying-development-principles`. The workflows depend on that bundled core;
-do not omit it when removing the old standalone principles skill. For vendored
-installations, update their recorded source/revision as well as the files.
-Repository-specific rules remain in the consuming repo's `AGENTS.md`.
+Install the complete `skills/` tree (14 procedural skills) and the shared
+`apply-development-principles` skill for the same agent and scope. For example,
+from the consuming project:
 
-The existing `gh-coderabbit-review-loop` integration remains separately installed
-where required; this consolidation preserves the review policy without copying
-the bot's mechanics into the core. A missing required integration must be reported,
-not silently treated as a completed review.
+```sh
+npx skills add https://github.com/free-energy-studio/superpowers --agent codex --copy -y
+npx skills add https://github.com/free-energy-studio/skills/tree/main/skills/development --skill apply-development-principles --agent codex --copy -y
+```
+
+Use reviewed commit URLs for pinned installations. Install other shared workflow
+skills when the repository uses them. Remove the retired
+`applying-development-principles` installation through the Skills CLI after
+installing its replacement; preserve local changes before removal. Update source
+revisions in the lockfile. Repository-specific rules remain in `AGENTS.md`.
 
 This repository retains upstream's platform adapters. The fork is not published
 in upstream's official marketplaces. Point your supported plugin/skill loader at

@@ -3,7 +3,8 @@
 This is Free Energy's fork of [obra/superpowers](https://github.com/obra/superpowers).
 Keep upstream attribution and the MIT license. Do not submit fork-specific changes upstream.
 
-Read `skills/applying-development-principles/SKILL.md` for the engineering standard.
+Use the separately installed `apply-development-principles` skill from
+`free-energy-studio/skills` for the engineering standard.
 Keep skills useful, specific, and short. Preserve authorization, user work, and
 honest verification; remove process that does not improve the result.
 

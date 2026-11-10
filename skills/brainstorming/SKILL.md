@@ -5,7 +5,7 @@ description: Use when a requested feature or behavior change has unresolved requ
 
 # Design Together
 
-Use `applying-development-principles`. Understand the user's goal and inspect the
+Use `apply-development-principles`. Understand the user's goal and inspect the
 existing path before proposing a new one.
 
 For a clear, bounded implementation request, proceed with the requested change and

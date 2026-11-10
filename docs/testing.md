@@ -28,11 +28,10 @@ the candidate first when verifying new manifests or skills. Its metadata fixture
 tests archive construction; it does not publish a release or validate an official
 marketplace submission.
 
-Portal packaging still requires external `agents/openai.yaml` metadata for every
-skill. An upstream package cannot supply metadata for the new
-`applying-development-principles` skill; a fork-specific metadata source is needed
-before producing that release artifact. Checkout-based plugin installs do not
-depend on this packaging path. No portal artifact is published by this change.
+Portal packaging requires external `agents/openai.yaml` metadata for every
+procedural skill. The shared `apply-development-principles` skill is a separate
+installation and is not bundled into this fork's archive. No portal artifact is
+published by this change.
 
 OpenCode's default runner uses local fixtures; `--integration` additionally needs
 a live OpenCode installation. The Pi and Hermes suites simulate host callbacks.

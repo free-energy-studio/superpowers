@@ -5,7 +5,7 @@ description: Use when a bug, test failure, or unexpected behavior needs causal i
 
 # Debug from Evidence
 
-Apply `applying-development-principles`. Establish what happened, what should have
+Apply `apply-development-principles`. Establish what happened, what should have
 happened, and the smallest useful reproduction or trace. Inspect the relevant code
 and recent changes. Keep observations separate from hypotheses.
 
@@ -45,7 +45,7 @@ Choose the least brittle structural correction using the core skill's SCENE
 principle. Cover the reasoning/failure class, not only one recorded conversation.
 
 When tracking the investigation in Linear, read
-[the Linear workflow](../applying-development-principles/references/linear.md).
+the installed `spec` and `linear` skills and repository policy.
 
 Supporting techniques, when relevant:
 `root-cause-tracing.md`, `condition-based-waiting.md`, and `defense-in-depth.md`.

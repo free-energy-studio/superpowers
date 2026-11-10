@@ -9,8 +9,10 @@ Skills are task-specific guidance, not a sequence every request must traverse.
 Answer simple questions directly. Do not load a workflow because a keyword happens
 to match, re-load unchanged instructions for every follow-up, or announce each skill.
 
-For software work, use `applying-development-principles` as the engineering
-standard. Its principles govern the choice and depth of the workflows below;
+For software work, use `apply-development-principles` as the engineering
+standard, installed separately from `free-energy-studio/skills`. If it is missing,
+report the setup gap and continue independent work that remains possible.
+Its principles govern the choice and depth of the workflows below;
 they are not a separate layer applied afterward. Load other skills when they
 help with the actual task:
 
@@ -27,9 +29,9 @@ help with the actual task:
   `subagent-driven-development`.
 - Authoring instructions: `writing-skills`.
 
-For Linear issue work or an issue-linked branch, read
-[the Linear workflow](../applying-development-principles/references/linear.md).
-Do not load ticket policy for unrelated development or ordinary questions.
+For tracker-backed work, use the installed `orchestrate`, `spec`, and tracker
+skills selected by repository policy. Do not load ticket policy for unrelated
+development or ordinary questions.
 
 Load an explicitly requested skill. Read applicable instructions before relying on
 them, using the host's native skill loader or file reader. Read supporting material
